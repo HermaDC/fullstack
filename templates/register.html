@@ -10,16 +10,16 @@
     <form action="/register" method="POST">
         <h2>Registro</h2>
         <label for="username"></label>
-        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
 
         <label for="password"></label>
-        <input type="password" name="password" placeholder="Contraseña" required>
-
+        <input type="password" id="password name="password" placeholder="Contraseña" required>
+        
+        <p id="error"></p>
         <button type="submit">Registrarse</button>
 
-        <p id="error"></p>
+        <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
     </form>
-    <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
     <script> 
         document.getElementById('form').addEventListener('submit', function(event) {
             event.preventDefault();

@@ -16,10 +16,10 @@
         <label for="password"></label>
         <input type="password" id="password" name="password" placeholder="Contraseña" required>
 
-        <button type="submit">Iniciar Sesión</button>
         <p id="error"></p>
+        <button type="submit">Iniciar Sesión</button>
+        <p>¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
     </form>
-    <p>¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
     <script> 
         document.getElementById('form').addEventListener('submit', function(event) {
             event.preventDefault();
