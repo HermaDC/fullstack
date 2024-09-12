@@ -34,6 +34,9 @@ def register():
         data = request.get_json()  # Obtener datos en formato JSON
         username = data.get('username')
         password = data.get('password')
+        print(username)
+        print(password)
+        
         hashed_password = generate_password_hash(password, method='sha256')
         
         # Verificar si el usuario ya existe
