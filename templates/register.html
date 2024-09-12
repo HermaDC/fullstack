@@ -7,12 +7,52 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h2>Registro</h2>
     <form action="/register" method="POST">
+        <h2>Registro</h2>
+        <label for="username"></label>
         <input type="text" name="username" placeholder="Nombre de usuario" required>
+
+        <label for="password"></label>
         <input type="password" name="password" placeholder="Contraseña" required>
+
         <button type="submit">Registrarse</button>
+
+        <p id="error"></p>
     </form>
     <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
+    <script> 
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            //recoger valores
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const errorMessage = document.getElementById('error');
+                if (data.success) {
+                    // Si el login es exitoso, redirigir a la página del dashboard
+                    window.location.href = data.redirect;
+                } else {
+                    // Si el login falla, mostrar el mensaje de error
+                    errorMessage.textContent = data.message;
+                    errorMessage.style.display = 'block';  // Mostrar el mensaje
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+    </script>
 </body>
 </html>
